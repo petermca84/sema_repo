@@ -1,0 +1,9 @@
+---
+ - name: Verify Portal
+   hosts: sdp-mwportal
+   become: true
+   become_method: sudo
+   become_user: mwatch
+   tasks:
+     - name: Run the shell script
+       shell: /var/log/test.sh run
