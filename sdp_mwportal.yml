@@ -1,6 +1,6 @@
 ---
 - name: "Check"
-  hosts: tcl-web
+  hosts: sdp-mwportal
   remote_user: mwatch
 
   tasks:
