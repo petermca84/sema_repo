@@ -27,8 +27,8 @@
           debug: msg={{ etc_hosts.stdout_lines }}
         - name: "Verify httpd process"
           sudo: yes
-          command: "ps -ef |grep httpd"
-          register: "httpd_process"
+          shell: "ps -ef |grep httpd"
+        
 
         #- name: "Debug portal_script"
          # become: yes
