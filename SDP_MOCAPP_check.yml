@@ -1,13 +1,9 @@
 ---
 - name: "Check MWOCAPP"
-  hosts: sdp-mwportal
+  hosts: sdp-mwocapp
   remote_user: mwatch
 
   tasks:
-        - name: "Check MWOCAPP"
-          hosts: sdp-mwocapp
-          remote_user: mwatchadmin
-          
         - name: "Check java home of mwatchadmin"
           become: yes
           become_user: mwatchadmin
