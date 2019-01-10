@@ -28,7 +28,7 @@
           
         - name: "Verify tomcat process"
           sudo: yes
-          shell: "ps -ef |grep tomcat | grep -v grep | awk '{ print $1  echo " " $2 echo " " $3  echo " " $9}'"
+          shell: "ps -ef |grep tomcat | grep -v grep | awk '{ print $1  echo \" \" $2 echo \" \" $3  echo \" \" $9}'"
           register: "tomcat_process"
            
         - name: "Debug tomcat_process.stdout as part of a string"
@@ -38,7 +38,7 @@
           
         - name: "Verify activemq process"
           sudo: yes
-          shell: "ps -ef |grep activemq | grep -v grep | awk '{ print $1  echo " " $2 echo " " $3  echo " " $9}'"
+          shell: "ps -ef |grep activemq | grep -v grep | awk '{ print $1  echo \" \" $2 echo \" \" $3  echo \" \" $9}'"
           register: "activemq_process"
           
         - name: "Debug activemq_process.stdout as part of a string"

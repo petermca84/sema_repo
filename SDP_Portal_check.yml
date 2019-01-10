@@ -28,7 +28,7 @@
           
         - name: "Verify httpd process"
           sudo: yes
-          shell: "ps -ef |grep httpd | grep -v grep | awk '{ print $1  echo " " $2 echo " " $3  echo " " $6}'"
+          shell: "ps -ef |grep httpd | grep -v grep | awk '{ print $1  echo \" \" $2 echo \" \" $3  echo \" \" $6}'"
           register: "httpd_process"
         
         - name: "Debug httpd_process.stdout as part of a string"
@@ -38,7 +38,7 @@
           
         - name: "Verify tomcat process"
           sudo: yes
-          shell: "ps -ef |grep tomcat | grep -v grep | awk '{ print $1  echo " " $2 echo " " $3  echo " " $9}'"
+          shell: "ps -ef |grep tomcat | grep -v grep | awk '{ print $1  echo \" \" $2 echo \" \" $3  echo \" \" $9}'"
           register: "tomcat_process"
            
         - name: "Debug tomcat_process.stdout as part of a string"
@@ -48,7 +48,7 @@
           
         - name: "Verify redis process"
           sudo: yes
-          shell: "ps -ef |grep redis | grep -v grep | awk '{ print $1  echo " " $2 echo " " $3  echo " " $9}'"
+          shell: "ps -ef |grep redis | grep -v grep | awk '{ print $1  echo \" \" $2 echo \" \" $3  echo \" \" $9}'"
           register: "redis_process"
           
         - name: "Debug redis_process.stdout as part of a string"
@@ -58,7 +58,7 @@
 
         - name: "Verify ldap process"
           sudo: yes
-          shell: "ps -ef |grep ldap | grep -v grep | awk '{ print $1  echo " " $2 echo " " $3  echo " " $9}'"
+          shell: "ps -ef |grep ldap | grep -v grep | awk '{ print $1  echo \" \" $2 echo \" \" $3  echo \" \" $9}'"
           register: "ldap_process"
          
         - name: "Debug ldap_process.stdout as part of a string"

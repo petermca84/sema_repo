@@ -28,7 +28,7 @@
           
         - name: "Verify tomcat process"
           sudo: yes
-          shell: "ps -ef |grep tomcat | grep -v grep | awk '{ print $1  echo " " $2 echo " " $3  echo " " $9}'"
+          shell: "ps -ef |grep tomcat | grep -v grep | awk '{ print $1  echo \" \" $2 echo \" \" $3  echo \" \" $9}'"
           register: "tomcat_process"
            
         - name: "Debug tomcat_process.stdout as part of a string"
@@ -38,7 +38,7 @@
           
         - name: "Verify jboss process"
           sudo: yes
-          shell: "ps -ef |grep jboss | grep -v grep | awk '{ print $1  echo " " $2 echo " " $3  echo " " $9}'"
+          shell: "ps -ef |grep jboss | grep -v grep | awk '{ print $1  echo \" \" $2 echo \" \" $3  echo \" \" $9}'"
           register: "jboss_process"
           
         - name: "Debug jboss_process.stdout as part of a string"
@@ -48,7 +48,7 @@
           
         - name: "Verify kafka process"
           sudo: yes
-          shell: " ps -ef |grep kafka | grep -v grep | awk '{ print $1 echo " " $2  echo " " $30}'"
+          shell: " ps -ef |grep kafka | grep -v grep | awk '{ print $1 echo \" \" $2  echo \" \" $30}'"
           register: "kafka_process"
           
         - name: "Debug kafka_process.stdout as part of a string"
