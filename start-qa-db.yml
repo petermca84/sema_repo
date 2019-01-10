@@ -1,0 +1,10 @@
+---
+- name: Start Azure VM
+  hosts: localhost
+  connection: local
+  tasks:
+  - name: Start qa DB machine
+    azure_rm_virtualmachine:
+    resource_group: "MWatchLab-qa-db-mcs-246082"
+    name: "qa-db-mcs.centralindia.cloudapp.azure.com"
+    started: y
