@@ -25,39 +25,43 @@
           become: yes
           become_user: mwatch
           debug: msg={{ etc_hosts.stdout_lines }}
+          
         - name: "Verify httpd process"
           sudo: yes
           shell: "ps -ef |grep httpd"
+          register: "httpd_process"
         
-
-        #- name: "Debug portal_script"
-         # become: yes
-         # become_user: mwatch
-          #debug: "var=portal_script"
+        - name: "Debug httpd_process.stdout as part of a string"
+          become: yes
+          become_user: mwatch
+          debug: msg={{ httpd_process.stdout_lines }}
+          
         - name: "Verify tomcat process"
           sudo: yes
           shell: "ps -ef |grep tomcat"
+          register: "tomcat_process"
+           
+        - name: "Debug tomcat_process.stdout as part of a string"
+          become: yes
+          become_user: mwatch
+          debug: msg={{ tomcat_process.stdout_lines }}
           
-
-        #- name: "Debug portal_script"
-         # become: yes
-         # become_user: mwatch
-          #debug: "var=portal_script"
         - name: "Verify redis process"
           sudo: yes
           shell: "ps -ef |grep redis"
-        
+          register: "redis_process"
+          
+        - name: "Debug redis_process.stdout as part of a string"
+          become: yes
+          become_user: mwatch
+          debug: msg={{ redis_process.stdout_lines }}        
 
-        #- name: "Debug portal_script"
-         # become: yes
-         # become_user: mwatch
-          #debug: "var=portal_script"
         - name: "Verify ldap process"
           sudo: yes
           shell: "ps -ef |grep ldap"
+          register: "ldap_process"
          
-
-        #- name: "Debug portal_script"
-         # become: yes
-         # become_user: mwatch
-          #debug: "var=portal_script"          
+        - name: "Debug ldap_process.stdout as part of a string"
+          become: yes
+          become_user: mwatch
+          debug: msg={{ ldap_process.stdout_lines }}          
