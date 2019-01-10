@@ -1,0 +1,63 @@
+---
+- name: "Check"
+  hosts: sdp-mwportal
+  remote_user: mwatch
+
+  tasks:
+        - name: "Check java home"
+          become: yes
+          become_user: mwatch
+          command: "echo $JAVA_HOME"
+          register: "java_home"
+
+        - name: "Debug java_home.stdout as part of a string"
+          become: yes
+          become_user: mwatch
+          debug: msg={{ java_home.stdout_lines }}
+
+        - name: "check hosts"
+          become: yes
+          become_user: mwatch
+          command: "cat /etc/hosts"
+          register: "etc_hosts"
+
+        - name: "Debug etc_hosts.stdout as part of a string"
+          become: yes
+          become_user: mwatch
+          debug: msg={{ etc_hosts.stdout_lines }}
+        - name: "Verify httpd process"
+          sudo: yes
+          command: "ps -ef |grep httpd"
+          register: "httpd_process"
+
+        #- name: "Debug portal_script"
+         # become: yes
+         # become_user: mwatch
+          #debug: "var=portal_script"
+        - name: "Verify tomcat process"
+          sudo: yes
+          command: "ps -ef |grep tomcat"
+          register: "tomcat_process"
+
+        #- name: "Debug portal_script"
+         # become: yes
+         # become_user: mwatch
+          #debug: "var=portal_script"
+        - name: "Verify redis process"
+          sudo: yes
+          command: "ps -ef |grep redis"
+          register: "redis_process"
+
+        #- name: "Debug portal_script"
+         # become: yes
+         # become_user: mwatch
+          #debug: "var=portal_script"
+        - name: "Verify ldap process"
+          sudo: yes
+          command: "ps -ef |grep ldap"
+          register: "ldap_process"
+
+        #- name: "Debug portal_script"
+         # become: yes
+         # become_user: mwatch
+          #debug: "var=portal_script"          
