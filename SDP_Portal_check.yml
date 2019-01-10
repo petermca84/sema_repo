@@ -36,8 +36,8 @@
           #debug: "var=portal_script"
         - name: "Verify tomcat process"
           sudo: yes
-          command: "ps -ef |grep tomcat"
-          register: "tomcat_process"
+          shell: "ps -ef |grep tomcat"
+          
 
         #- name: "Debug portal_script"
          # become: yes
@@ -45,8 +45,8 @@
           #debug: "var=portal_script"
         - name: "Verify redis process"
           sudo: yes
-          command: "ps -ef |grep redis"
-          register: "redis_process"
+          shell: "ps -ef |grep redis"
+        
 
         #- name: "Debug portal_script"
          # become: yes
@@ -54,8 +54,8 @@
           #debug: "var=portal_script"
         - name: "Verify ldap process"
           sudo: yes
-          command: "ps -ef |grep ldap"
-          register: "ldap_process"
+          shell: "ps -ef |grep ldap"
+         
 
         #- name: "Debug portal_script"
          # become: yes
