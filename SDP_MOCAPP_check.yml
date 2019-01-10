@@ -1,0 +1,57 @@
+---
+- name: "Check MWOCAPP"
+  hosts: sdp-mwocapp
+  remote_user: mwatchadmin
+
+  tasks:
+        - name: "Check java home of mwatchadmin"
+          become: yes
+          become_user: mwatchadmin
+          command: "echo $JAVA_HOME"
+          register: "java_home"
+
+        - name: "Debug java_home.stdout as part of a string"
+          become: yes
+          become_user: mwatchadmin
+          debug: msg={{ java_home.stdout_lines }}
+
+        - name: "check hosts"
+          become: yes
+          become_user: mwatchadmin
+          command: "cat /etc/hosts"
+          register: "etc_hosts"
+
+        - name: "Debug etc_hosts.stdout as part of a string"
+          become: yes
+          become_user: mwatchadmin
+          debug: msg={{ etc_hosts.stdout_lines }}
+          
+        - name: "Verify tomcat process"
+          sudo: yes
+          shell: "ps -ef |grep tomcat | grep -v grep | awk '{ print $1  echo " " $2 echo " " $3  echo " " $9}'"
+          register: "tomcat_process"
+           
+        - name: "Debug tomcat_process.stdout as part of a string"
+          become: yes
+          become_user: mwatchadmin
+          debug: msg={{ tomcat_process.stdout_lines }}
+          
+        - name: "Verify jboss process"
+          sudo: yes
+          shell: "ps -ef |grep jboss | grep -v grep | awk '{ print $1  echo " " $2 echo " " $3  echo " " $9}'"
+          register: "jboss_process"
+          
+        - name: "Debug jboss_process.stdout as part of a string"
+          become: yes
+          become_user: mwatchadmin
+          debug: msg={{ jboss_process.stdout_lines }}        
+          
+        - name: "Verify kafka process"
+          sudo: yes
+          shell: " ps -ef |grep kafka | grep -v grep | awk '{ print $1 echo " " $2  echo " " $30}'"
+          register: "kafka_process"
+          
+        - name: "Debug kafka_process.stdout as part of a string"
+          become: yes
+          become_user: mwatchadmin
+          debug: msg={{ kafka_process.stdout_lines }}     

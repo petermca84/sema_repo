@@ -1,0 +1,47 @@
+---
+- name: "Check MCS"
+  hosts: sdp-mwrcsmq1
+  remote_user: rcsuser
+
+  tasks:
+        - name: "Check java home of rcsuser"
+          become: yes
+          become_user: rcsuser
+          command: "echo $JAVA_HOME"
+          register: "java_home"
+
+        - name: "Debug java_home.stdout as part of a string"
+          become: yes
+          become_user: rcsuser
+          debug: msg={{ java_home.stdout_lines }}
+
+        - name: "check hosts"
+          become: yes
+          become_user: rcsuser
+          command: "cat /etc/hosts"
+          register: "etc_hosts"
+
+        - name: "Debug etc_hosts.stdout as part of a string"
+          become: yes
+          become_user: rcsuser
+          debug: msg={{ etc_hosts.stdout_lines }}
+          
+        - name: "Verify tomcat process"
+          sudo: yes
+          shell: "ps -ef |grep tomcat | grep -v grep | awk '{ print $1  echo " " $2 echo " " $3  echo " " $9}'"
+          register: "tomcat_process"
+           
+        - name: "Debug tomcat_process.stdout as part of a string"
+          become: yes
+          become_user: rcsuser
+          debug: msg={{ tomcat_process.stdout_lines }}
+          
+        - name: "Verify activemq process"
+          sudo: yes
+          shell: "ps -ef |grep activemq | grep -v grep | awk '{ print $1  echo " " $2 echo " " $3  echo " " $9}'"
+          register: "activemq_process"
+          
+        - name: "Debug activemq_process.stdout as part of a string"
+          become: yes
+          become_user: rcsuser
+          debug: msg={{ activemq_process.stdout_lines }}        
